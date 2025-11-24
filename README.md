@@ -17,4 +17,14 @@ public static class Functional
 
     // More overloads can be added for more arguments as needed
 }
+
+private static Destination MapToDestination(this Source source)
+{
+    Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
+        s => new Destination() { FullName = s.Name },
+        d => { d.Age = source.Age; return d; },
+        d => { d.Location = source.City; return d; });
+
+    return doMapping(source);
+}
 ```
