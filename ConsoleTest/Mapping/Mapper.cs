@@ -14,7 +14,7 @@ public static class Mapper
     private static Destination MapToDestination(this Source source)
     {
         Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
-            s => new Destination() { FullName = s.Name },
+            s => new Destination() { FullName = $"{s.FirstName} {s.LastName}" },
             d => { d.Age = source.Age; return d; },
             d => { d.Location = source.City; return d; });
 
@@ -23,7 +23,7 @@ public static class Mapper
     
     public static void Run()
     {
-        var src = new Source { Name = "Fred Flinstone", Age = 30, City = "New York" };
+        var src = new Source { FirstName = "Fred", LastName = "Flinstone", Age = 30, City = "New York" };
 
         Destination dest = MapToDestination(src);
 
