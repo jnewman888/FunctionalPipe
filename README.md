@@ -24,7 +24,7 @@ public static class Functional
 }
 ```
 
-## Model objects for testing...
+## Models for testing...
 ```csharp
 public record class Source
 {
