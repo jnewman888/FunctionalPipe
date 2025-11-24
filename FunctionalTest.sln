@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloDotNet10", "HelloDotNet10\HelloDotNet10.csproj", "{2163B503-A05B-4724-9BB1-3D46F131F36C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{2163B503-A05B-4724-9BB1-3D46F131F36C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalTest.Lib", "FunctionalTest.Lib\FunctionalTest.Lib.csproj", "{E922650C-1E67-43E1-B405-294E189FEF32}"
 EndProject

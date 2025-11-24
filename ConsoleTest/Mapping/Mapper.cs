@@ -4,10 +4,10 @@
 // // All rights reserved.
 // // </copyright>
 // // ------------------------------------------------------------------------
-namespace HelloDotNet10.Mapping;
+namespace ConsoleTest.Mapping;
 
+using ConsoleTest.Mapping.Models;
 using FunctionalTest.Lib;
-using HelloDotNet10.Mapping.Models;
 
 public static class Mapper
 {

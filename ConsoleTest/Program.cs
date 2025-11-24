@@ -1,6 +1,6 @@
-﻿namespace HelloDotNet10;
+﻿namespace ConsoleTest;
 
-using HelloDotNet10.Mapping;
+using ConsoleTest.Mapping;
 
 // ReSharper disable once ClassNeverInstantiated.Global
 internal class Program

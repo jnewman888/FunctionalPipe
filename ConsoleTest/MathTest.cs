@@ -4,7 +4,7 @@
 // // All rights reserved.
 // // </copyright>
 // // ------------------------------------------------------------------------
-namespace HelloDotNet10;
+namespace ConsoleTest;
 
 using FunctionalTest.Lib;
 

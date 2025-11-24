@@ -4,7 +4,7 @@
 // // All rights reserved.
 // // </copyright>
 // // ------------------------------------------------------------------------
-namespace HelloDotNet10.Mapping.Models;
+namespace ConsoleTest.Mapping.Models;
 
 public class Source
 {
