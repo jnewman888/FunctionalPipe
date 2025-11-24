@@ -1,12 +1,14 @@
-﻿namespace ConsoleTest;
+﻿using ConsoleTest.Mapping;
+using ConsoleTest.Mapping.Models;
 
-using ConsoleTest.Mapping;
-
-// ReSharper disable once ClassNeverInstantiated.Global
-internal class Program
+var src = new Candidate
 {
-    private static void Main(string[] args)
-    {
-        Mapper.Run();
-    }
-}
+    FirstName = "Fred",
+    LastName = "Flinstone",
+    Age = 30,
+    City = "New York"
+};
+
+Employee dest = src.MapToDestination();
+
+Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");

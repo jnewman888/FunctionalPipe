@@ -11,44 +11,37 @@ using FunctionalTest.Lib;
 
 public static class Mapper
 {
-    private static Employee MapName(this Candidate src) => new()
+    extension(Candidate src)
     {
-        FullName = $"{src.FirstName} {src.LastName}"
-    };
-
-    private static Employee MapAge(this Candidate src, Employee dest) =>
-        dest with { Age = src.Age };
-
-    private static Employee MapLocation(this Candidate src, Employee dest) =>
-        dest with { Location = src.City };
-    
-    private static Employee GenerateEmployeeId(this Candidate src, Employee dest) =>
-        dest with { EmployeeId = Guid.NewGuid().ToString() };
-
-    private static Employee MapToDestination(this Candidate candidate)
-    {
-        Func<Candidate, Employee> doMapping = 
-            Functional.Pipe<Candidate, Employee>(
-                MapName,
-                candidate.MapAge,
-                candidate.MapLocation,
-                candidate.GenerateEmployeeId);
-
-        return doMapping(candidate);
-    }
-    
-    public static void Run()
-    {
-        var src = new Candidate
+        // Can be made internal for unit testing
+        private Employee MapName() => new()
         {
-            FirstName = "Fred",
-            LastName = "Flinstone",
-            Age = 30,
-            City = "New York"
+            FullName = $"{src.FirstName} {src.LastName}"
         };
 
-        Employee dest = MapToDestination(src);
+        // Can be made internal for unit testing
+        private Employee MapAge(Employee dest) =>
+            dest with { Age = src.Age };
 
-        Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");        
+        // Can be made internal for unit testing
+        private Employee MapLocation(Employee dest) =>
+            dest with { Location = src.City };
+
+        // Can be made internal for unit testing
+        private Employee GenerateEmployeeId(Employee dest) =>
+            dest with { EmployeeId = Guid.NewGuid().ToString() };
+
+        // Consider testing with snapshots
+        public Employee MapToDestination()
+        {
+            Func<Candidate, Employee> doMapping = 
+                Functional.Pipe<Candidate, Employee>(
+                    MapName,
+                    src.MapAge,
+                    src.MapLocation,
+                    src.GenerateEmployeeId);
+
+            return doMapping(src);
+        }
     }
 }

@@ -51,29 +51,55 @@ public record class Employee
 
 ## Mapping...
 ```csharp
-private static Employee MapName(this Candidate src) => new()
+public static class Mapper
 {
-    FullName = $"{src.FirstName} {src.LastName}"
+    extension(Candidate src)
+    {
+        // Can be made internal for unit testing
+        private Employee MapName() => new()
+        {
+            FullName = $"{src.FirstName} {src.LastName}"
+        };
+
+        // Can be made internal for unit testing
+        private Employee MapAge(Employee dest) =>
+            dest with { Age = src.Age };
+
+        // Can be made internal for unit testing
+        private Employee MapLocation(Employee dest) =>
+            dest with { Location = src.City };
+
+        // Can be made internal for unit testing
+        private Employee GenerateEmployeeId(Employee dest) =>
+            dest with { EmployeeId = Guid.NewGuid().ToString() };
+
+        // Consider testing with snapshots
+        public Employee MapToDestination()
+        {
+            Func<Candidate, Employee> doMapping = 
+                Functional.Pipe<Candidate, Employee>(
+                    MapName,
+                    src.MapAge,
+                    src.MapLocation,
+                    src.GenerateEmployeeId);
+
+            return doMapping(src);
+        }
+    }
+}
+```
+
+## Usage...
+```csharp
+var src = new Candidate
+{
+    FirstName = "Fred",
+    LastName = "Flinstone",
+    Age = 30,
+    City = "New York"
 };
 
-private static Employee MapAge(this Candidate src, Employee dest) =>
-    dest with { Age = src.Age };
+Employee dest = src.MapToDestination();
 
-private static Employee MapLocation(this Candidate src, Employee dest) =>
-    dest with { Location = src.City };
-
-private static Employee GenerateEmployeeId(this Candidate src, Employee dest) =>
-    dest with { EmployeeId = Guid.NewGuid().ToString() };
-
-private static Employee MapToDestination(this Candidate candidate)
-{
-    Func<Candidate, Employee> doMapping = 
-        Functional.Pipe<Candidate, Employee>(
-            MapName,
-            candidate.MapAge,
-            candidate.MapLocation,
-            candidate.GenerateEmployeeId);
-
-    return doMapping(candidate);
-}
+Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");
 ```
