@@ -11,9 +11,9 @@ using ConsoleTest.Mapping;
 using ConsoleTest.Mapping.Models;
 using ConsoleTest.Services;
 
-public class MapperTests
+public class MappingsTests
 {
-    private readonly IEmployeeIdGenerator employeeIdGenerator = new EmployeeIdGenerator();
+    private readonly IEmployeeService _employeeService = new EmployeeService();
 
     [Fact]
     public void MapToDestination_MapsAllPropertiesCorrectly()
@@ -28,7 +28,7 @@ public class MapperTests
         };
 
         // Act
-        Employee employee = candidate.MapToDestination(this.employeeIdGenerator);
+        Employee employee = candidate.MapToEmployee(this._employeeService);
 
         // Assert
         Assert.Equal("John Doe", employee.FullName);
@@ -50,8 +50,8 @@ public class MapperTests
         };
 
         // Act
-        Employee employee1 = candidate.MapToDestination(this.employeeIdGenerator);
-        Employee employee2 = candidate.MapToDestination(this.employeeIdGenerator);
+        Employee employee1 = candidate.MapToEmployee(this._employeeService);
+        Employee employee2 = candidate.MapToEmployee(this._employeeService);
 
         // Assert
         Assert.NotEqual(employee1.EmployeeId, employee2.EmployeeId);

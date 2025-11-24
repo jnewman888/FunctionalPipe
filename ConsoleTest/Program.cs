@@ -10,6 +10,6 @@ var src = new Candidate
     City = "New York"
 };
 
-Employee dest = src.MapToDestination(new EmployeeIdGenerator());
+Employee dest = src.MapToEmployee(new EmployeeService());
 
 Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");
