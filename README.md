@@ -44,13 +44,17 @@ public class Destination
 
 ## Mapping...
 ```csharp
-private static Destination MapToDestination(this Source source)
-{
-    Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
-        s => new Destination() { FullName = $"{s.FirstName} {s.LastName}" },
-        d => { d.Age = source.Age; return d; },
-        d => { d.Location = source.City; return d; });
+    private static Destination MapName(this Source src) => new() { FullName = $"{src.FirstName} {src.LastName}" };
+    private static Destination MapAge(this Source src, Destination dest) { dest.Age = src.Age; return dest; }
+    private static Destination MapLocation(this Source src, Destination dest) { dest.Location = src.City; return dest; }
+    
+    private static Destination MapToDestination(this Source source)
+    {
+        Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
+            MapName,
+            source.MapAge,
+            source.MapLocation);
 
-    return doMapping(source);
-}
+        return doMapping(source);
+    }
 ```
