@@ -6,6 +6,7 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.Mapping;
 
+using ConsoleTest.Interfaces;
 using ConsoleTest.Mapping.Models;
 using FunctionalTest.Lib;
 
@@ -28,18 +29,18 @@ public static class Mapper
             dest with { Location = src.City };
 
         // Can be made internal for unit testing
-        private Employee GenerateEmployeeId(Employee dest) =>
-            dest with { EmployeeId = Guid.NewGuid().ToString() };
+        private Employee GenerateEmployeeId(Employee dest, IEmployeeIdGenerator employeeIdGenerator) =>
+            dest with { EmployeeId = employeeIdGenerator.GenerateEmployeeId(dest) };
 
         // Consider testing with snapshots
-        public Employee MapToDestination()
+        public Employee MapToDestination(IEmployeeIdGenerator employeeIdGenerator)
         {
-            Func<Candidate, Employee> doMapping = 
+            Func<Candidate, Employee> doMapping =
                 Functional.Pipe<Candidate, Employee>(
                     MapName,
                     src.MapAge,
                     src.MapLocation,
-                    src.GenerateEmployeeId);
+                    dest => src.GenerateEmployeeId(dest, employeeIdGenerator));
 
             return doMapping(src);
         }

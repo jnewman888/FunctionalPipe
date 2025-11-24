@@ -1,5 +1,6 @@
 ﻿using ConsoleTest.Mapping;
 using ConsoleTest.Mapping.Models;
+using ConsoleTest.Services;
 
 var src = new Candidate
 {
@@ -9,6 +10,6 @@ var src = new Candidate
     City = "New York"
 };
 
-Employee dest = src.MapToDestination();
+Employee dest = src.MapToDestination(new EmployeeIdGenerator());
 
 Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");
