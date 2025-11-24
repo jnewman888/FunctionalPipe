@@ -11,30 +11,43 @@ using FunctionalTest.Lib;
 
 public static class Mapper
 {
-    private static Destination MapName(this Source src) => new()
+    private static Employee MapName(this Candidate src) => new()
     {
         FullName = $"{src.FirstName} {src.LastName}"
     };
 
-    private static Destination MapAge(this Source src, Destination dest) => dest with { Age = src.Age };
+    private static Employee MapAge(this Candidate src, Employee dest) =>
+        dest with { Age = src.Age };
 
-    private static Destination MapLocation(this Source src, Destination dest) => dest with { Location = src.City };
+    private static Employee MapLocation(this Candidate src, Employee dest) =>
+        dest with { Location = src.City };
     
-    private static Destination MapToDestination(this Source source)
-    {
-        Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
-            MapName,
-            source.MapAge,
-            source.MapLocation);
+    private static Employee GenerateEmployeeId(this Candidate src, Employee dest) =>
+        dest with { EmployeeId = Guid.NewGuid().ToString() };
 
-        return doMapping(source);
+    private static Employee MapToDestination(this Candidate candidate)
+    {
+        Func<Candidate, Employee> doMapping = 
+            Functional.Pipe<Candidate, Employee>(
+                MapName,
+                candidate.MapAge,
+                candidate.MapLocation,
+                candidate.GenerateEmployeeId);
+
+        return doMapping(candidate);
     }
     
     public static void Run()
     {
-        var src = new Source { FirstName = "Fred", LastName = "Flinstone", Age = 30, City = "New York" };
+        var src = new Candidate
+        {
+            FirstName = "Fred",
+            LastName = "Flinstone",
+            Age = 30,
+            City = "New York"
+        };
 
-        Destination dest = MapToDestination(src);
+        Employee dest = MapToDestination(src);
 
         Console.WriteLine($"FullName: {dest.FullName}, Age: {dest.Age}, Location: {dest.Location}");        
     }

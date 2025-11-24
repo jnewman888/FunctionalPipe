@@ -26,7 +26,7 @@ public static class Functional
 
 ## Models for testing...
 ```csharp
-public record class Source
+public record class Candidate
 {
     public string FirstName { get; set; }
     
@@ -37,8 +37,10 @@ public record class Source
     public string City { get; set; }
 }
 
-public record class Destination
+public record class Employee
 {
+    public string EmployeeId { get; set; }
+
     public string FullName { get; set; }
     
     public int Age { get; set; }
@@ -49,25 +51,29 @@ public record class Destination
 
 ## Mapping...
 ```csharp
-    private static Destination MapName(this Source src) => new()
-    {
-        FullName = $"{src.FirstName} {src.LastName}"
-    };
+private static Employee MapName(this Candidate src) => new()
+{
+    FullName = $"{src.FirstName} {src.LastName}"
+};
 
-    private static Destination MapAge(this Source src, Destination dest) =>
-        dest with { Age = src.Age };
+private static Employee MapAge(this Candidate src, Employee dest) =>
+    dest with { Age = src.Age };
 
-    private static Destination MapLocation(this Source src, Destination dest) =>
-        dest with { Location = src.City };
-    
-    private static Destination MapToDestination(this Source source)
-    {
-        Func<Source, Destination> doMapping = 
-            Functional.Pipe<Source, Destination>(
-                MapName,
-                source.MapAge,
-                source.MapLocation);
+private static Employee MapLocation(this Candidate src, Employee dest) =>
+    dest with { Location = src.City };
 
-        return doMapping(source);
-    }
+private static Employee GenerateEmployeeId(this Candidate src, Employee dest) =>
+    dest with { EmployeeId = Guid.NewGuid().ToString() };
+
+private static Employee MapToDestination(this Candidate candidate)
+{
+    Func<Candidate, Employee> doMapping = 
+        Functional.Pipe<Candidate, Employee>(
+            MapName,
+            candidate.MapAge,
+            candidate.MapLocation,
+            candidate.GenerateEmployeeId);
+
+    return doMapping(candidate);
+}
 ```

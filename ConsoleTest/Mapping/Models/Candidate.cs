@@ -6,7 +6,7 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.Mapping.Models;
 
-public record class Source
+public record class Candidate
 {
     public string FirstName { get; set; }
     
