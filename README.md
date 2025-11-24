@@ -26,27 +26,37 @@ public static class Functional
 
 ## Model objects for testing...
 ```csharp
-public class Source
+public record class Source
 {
     public string FirstName { get; set; }
+    
     public string LastName { get; set; }
+    
     public int Age { get; set; }
+    
     public string City { get; set; }
 }
 
-public class Destination
+public record class Destination
 {
     public string FullName { get; set; }
+    
     public int Age { get; set; }
+    
     public string Location { get; set; }
 }
 ```
 
 ## Mapping...
 ```csharp
-    private static Destination MapName(this Source src) => new() { FullName = $"{src.FirstName} {src.LastName}" };
-    private static Destination MapAge(this Source src, Destination dest) { dest.Age = src.Age; return dest; }
-    private static Destination MapLocation(this Source src, Destination dest) { dest.Location = src.City; return dest; }
+    private static Destination MapName(this Source src) => new()
+    {
+        FullName = $"{src.FirstName} {src.LastName}"
+    };
+
+    private static Destination MapAge(this Source src, Destination dest) => dest with { Age = src.Age };
+
+    private static Destination MapLocation(this Source src, Destination dest) => dest with { Location = src.City };
     
     private static Destination MapToDestination(this Source source)
     {

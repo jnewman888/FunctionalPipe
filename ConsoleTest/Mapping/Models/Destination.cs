@@ -6,7 +6,7 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.Mapping.Models;
 
-public class Destination
+public record class Destination
 {
     public string FullName { get; set; }
     

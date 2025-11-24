@@ -6,15 +6,19 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.Mapping;
 
-using System.Xml.Serialization;
 using ConsoleTest.Mapping.Models;
 using FunctionalTest.Lib;
 
 public static class Mapper
 {
-    private static Destination MapName(this Source src) => new() { FullName = $"{src.FirstName} {src.LastName}" };
-    private static Destination MapAge(this Source src, Destination dest) { dest.Age = src.Age; return dest; }
-    private static Destination MapLocation(this Source src, Destination dest) { dest.Location = src.City; return dest; }
+    private static Destination MapName(this Source src) => new()
+    {
+        FullName = $"{src.FirstName} {src.LastName}"
+    };
+
+    private static Destination MapAge(this Source src, Destination dest) => dest with { Age = src.Age };
+
+    private static Destination MapLocation(this Source src, Destination dest) => dest with { Location = src.City };
     
     private static Destination MapToDestination(this Source source)
     {
