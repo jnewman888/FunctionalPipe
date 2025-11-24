@@ -18,8 +18,8 @@
         <Using Include = "Xunit" />
     </ItemGroup >
 
-    <ItemGroup>
-      <ProjectReference Include="..\ConsoleTest\ConsoleTest.csproj" />
-    </ItemGroup>
+    <ItemGroup >
+        <ProjectReference Include = "..\ConsoleTest\ConsoleTest.csproj" />
+    </ItemGroup >
 
 </Project >

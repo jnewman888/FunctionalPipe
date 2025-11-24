@@ -1,6 +1,7 @@
 # Functional Pipe Testing
 
 ## The functional glue...
+
 ```csharp
 public static class Functional
 {
@@ -25,6 +26,7 @@ public static class Functional
 ```
 
 ## Models for testing...
+
 ```csharp
 public record class Candidate
 {
@@ -50,6 +52,7 @@ public record class Employee
 ```
 
 ## Mapping...
+
 ```csharp
 public static class Mapper
 {
@@ -90,6 +93,7 @@ public static class Mapper
 ```
 
 ## Usage...
+
 ```csharp
 var src = new Candidate
 {

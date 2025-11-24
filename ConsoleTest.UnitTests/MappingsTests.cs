@@ -8,8 +8,8 @@ namespace ConsoleTest.UnitTests;
 
 using ConsoleTest.Interfaces;
 using ConsoleTest.Mapping;
-using ConsoleTest.Mapping.Models;
 using ConsoleTest.Services;
+using Models;
 
 public class MappingsTests
 {

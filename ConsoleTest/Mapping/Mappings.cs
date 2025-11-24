@@ -7,21 +7,19 @@
 namespace ConsoleTest.Mapping;
 
 using ConsoleTest.Interfaces;
-using ConsoleTest.Mapping.Models;
+using Models;
 
 public static class Mappings
 {
     extension(Candidate src)
     {
-        public Employee MapToEmployee(IEmployeeService employeeService)
-        {
-            return new()
+        public Employee MapToEmployee(IEmployeeService employeeService) =>
+            new()
             {
                 FullName = $"{src.FirstName} {src.LastName}",
                 Age = src.Age,
                 Location = src.City,
                 EmployeeId = employeeService.GenerateEmployeeId()
             };
-        }
     }
 }

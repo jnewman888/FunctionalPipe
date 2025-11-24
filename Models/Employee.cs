@@ -4,15 +4,15 @@
 // // All rights reserved.
 // // </copyright>
 // // ------------------------------------------------------------------------
-namespace ConsoleTest.Mapping.Models;
+namespace Models;
 
 public record class Employee
 {
     public required string EmployeeId { get; set; }
 
     public required string FullName { get; set; }
-    
+
     public required int Age { get; set; }
-    
+
     public required string Location { get; set; }
 }

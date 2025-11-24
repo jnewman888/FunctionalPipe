@@ -1,8 +1,8 @@
 ﻿using ConsoleTest.Interfaces;
 using ConsoleTest.Mapping;
-using ConsoleTest.Mapping.Models;
 using ConsoleTest.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
 
 ServiceProvider serviceProvider = new ServiceCollection()
     .AddSingleton<IEmployeeService, EmployeeService>()

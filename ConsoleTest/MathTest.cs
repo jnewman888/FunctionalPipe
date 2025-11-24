@@ -26,6 +26,6 @@ public class MathTest
         Func<int, int, int> add = (a, b) => a + b;
         Func<int, int, int> pipeline2 = Functional.Pipe(add, doubleValue, square);
         int result2 = pipeline2(2, 5); // ((2 + 5) * 2)^2 = 196
-        Console.WriteLine($"Result of pipeline2(2, 5): {result2}");        
+        Console.WriteLine($"Result of pipeline2(2, 5): {result2}");
     }
 }
