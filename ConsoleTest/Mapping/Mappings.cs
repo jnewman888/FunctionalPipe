@@ -13,13 +13,15 @@ public static class Mappings
 {
     extension(Candidate src)
     {
-        public Employee MapToEmployee(IEmployeeService employeeService) =>
-            new()
+        public Employee MapToEmployee(IEmployeeService employeeService)
+        {
+            return new()
             {
                 FullName = $"{src.FirstName} {src.LastName}",
                 Age = src.Age,
                 Location = src.City,
                 EmployeeId = employeeService.GenerateEmployeeId()
             };
+        }
     }
 }

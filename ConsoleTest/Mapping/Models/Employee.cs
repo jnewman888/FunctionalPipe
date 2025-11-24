@@ -8,11 +8,11 @@ namespace ConsoleTest.Mapping.Models;
 
 public record class Employee
 {
-    public string EmployeeId { get; set; }
+    public required string EmployeeId { get; set; }
 
-    public string FullName { get; set; }
+    public required string FullName { get; set; }
     
-    public int Age { get; set; }
+    public required int Age { get; set; }
     
-    public string Location { get; set; }
+    public required string Location { get; set; }
 }
