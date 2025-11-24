@@ -8,17 +8,13 @@
     </PropertyGroup >
 
     <ItemGroup >
-        <ProjectReference Include = "..\FunctionalTest.Lib\FunctionalTest.Lib.csproj" />
         <ProjectReference Include = "..\Models\Models.csproj" />
+        <ProjectReference Include="..\Services\Services.csproj" />
     </ItemGroup >
 
     <ItemGroup >
         <PackageReference Include = "Microsoft.Extensions.DependencyInjection" Version = "10.0.0" />
         <PackageReference Include = "Microsoft.Extensions.DependencyInjection.Abstractions" Version = "10.0.0" />
-    </ItemGroup >
-
-    <ItemGroup >
-        <Folder Include = "Mapping\Models\" />
     </ItemGroup >
 
 </Project >

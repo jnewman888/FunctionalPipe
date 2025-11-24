@@ -6,8 +6,8 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.Mapping;
 
-using ConsoleTest.Interfaces;
 using Models;
+using Services.Interfaces;
 
 public static class Mappings
 {

@@ -1,11 +1,11 @@
-﻿using ConsoleTest.Interfaces;
-using ConsoleTest.Mapping;
-using ConsoleTest.Services;
+﻿using ConsoleTest.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
+using Services;
+using Services.Interfaces;
 
 ServiceProvider serviceProvider = new ServiceCollection()
-    .AddSingleton<IEmployeeService, EmployeeService>()
+    .AddMyServices()
     .BuildServiceProvider();
 
 var src = new Candidate

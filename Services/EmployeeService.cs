@@ -1,12 +1,14 @@
 // // ------------------------------------------------------------------------
-// // <copyright file="IEmployeeService.cs" company="Jack Henry &amp; Associates, Inc.">
+// // <copyright file="EmployeeService.cs" company="Jack Henry &amp; Associates, Inc.">
 // // Copyright (c) Jack Henry &amp; Associates, Inc.
 // // All rights reserved.
 // // </copyright>
 // // ------------------------------------------------------------------------
-namespace ConsoleTest.Interfaces;
+namespace Services;
 
-public interface IEmployeeService
+using Services.Interfaces;
+
+public class EmployeeService : IEmployeeService
 {
-    string GenerateEmployeeId();
+    public string GenerateEmployeeId() => Guid.NewGuid().ToString("N");
 }

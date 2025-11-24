@@ -6,10 +6,10 @@
 // // ------------------------------------------------------------------------
 namespace ConsoleTest.UnitTests;
 
-using ConsoleTest.Interfaces;
 using ConsoleTest.Mapping;
-using ConsoleTest.Services;
 using Models;
+using Services;
+using Services.Interfaces;
 
 public class MappingsTests
 {
