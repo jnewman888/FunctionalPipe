@@ -54,16 +54,19 @@ public record class Destination
         FullName = $"{src.FirstName} {src.LastName}"
     };
 
-    private static Destination MapAge(this Source src, Destination dest) => dest with { Age = src.Age };
+    private static Destination MapAge(this Source src, Destination dest) =>
+        dest with { Age = src.Age };
 
-    private static Destination MapLocation(this Source src, Destination dest) => dest with { Location = src.City };
+    private static Destination MapLocation(this Source src, Destination dest) =>
+        dest with { Location = src.City };
     
     private static Destination MapToDestination(this Source source)
     {
-        Func<Source, Destination> doMapping = Functional.Pipe<Source, Destination>(
-            MapName,
-            source.MapAge,
-            source.MapLocation);
+        Func<Source, Destination> doMapping = 
+            Functional.Pipe<Source, Destination>(
+                MapName,
+                source.MapAge,
+                source.MapLocation);
 
         return doMapping(source);
     }
